@@ -1,0 +1,18 @@
+.btn {
+	@apply min-w-[9rem] h-[4rem] text-[1.4rem] cursor-pointer transition-all duration-200 ease-in-out font-normal border-[0.1rem] border-secondBrandColor rounded-lg;
+}
+
+.btn:disabled {
+	@apply opacity-50;
+}
+
+.btn-fill--dark {
+	@apply text-white bg-secondBrandColor;
+}
+
+.btn-fill--dark:hover {
+	@apply text-white bg-bgColor border-[0.1rem] border-secondBrandColor;
+}
+.btn-fill--dark:hover:disabled {
+	@apply text-white bg-secondBrandColor;
+}

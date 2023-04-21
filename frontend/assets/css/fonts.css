@@ -1,0 +1,20 @@
+@font-face {
+	font-weight: 300;
+	font-family: "iqos_font";
+	font-style: normal;
+	src: url("../fonts/IQOS-Light.woff2") format("woff2"), url("../fonts/IQOS-Light.woff") format("woff"), url("../fonts/IQOS-Light.ttf") format("truetype");
+}
+
+@font-face {
+	font-weight: 400;
+	font-family: "iqos_font";
+	font-style: normal;
+	src: url("../fonts/IQOS-Regular.woff2") format("woff2"), url("../fonts/IQOS-Regular.woff") format("woff"), url("../fonts/IQOS-Regular.ttf") format("truetype");
+}
+
+@font-face {
+	font-weight: 700;
+	font-family: "iqos_font";
+	font-style: normal;
+	src: url("../fonts/IQOS-Bold.woff2") format("woff2"), url("../fonts/IQOS-Bold.woff") format("woff"), url("../fonts/IQOS-Bold.ttf") format("truetype");
+}

@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans:400,700&display=swap&subset=latin-ext");
+
+@import "fonts.css";
+@import "buttons.css";
+
+html,
+body,
+#__nuxt,
+.nuxt-container {
+	@apply w-full h-full font-sans;
+}
+
+.nuxt-container > div {
+	@apply w-full min-h-full;
+}
+
+body {
+	@apply text-white bg-bgColor;
+}
+
+.disabled {
+	cursor: auto !important;
+	opacity: 0.6;
+}
+
+.element::-webkit-scrollbar { @apply w-0; }
+
+::-webkit-scrollbar { @apply w-0; }
+
+/*  */
+
+.controllers--global {
+  @apply flex pb-[1rem];
+}
+.controllers__item--global {
+  @apply text-[1rem] mr-[1rem];
+}
+.controllers__item__add--global {
+  @apply w-[15rem];
+}
