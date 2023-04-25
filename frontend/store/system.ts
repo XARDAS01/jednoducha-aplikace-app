@@ -5,6 +5,7 @@ import { useCustomFetch } from '~/composable/fetch';
 export const useSystemStore = defineStore('systemStore', () => {
 	// STATE
 	const system = reactive({
+		loading: true,
 		isAuth: false,
 		token: localStorage.getItem('token') || null,
 		uid: '',
@@ -14,6 +15,7 @@ export const useSystemStore = defineStore('systemStore', () => {
 	const isAuth = computed(() => system.isAuth);
 	const getToken = computed(() => system.token);
 	const getUid = computed(() => system.uid);
+	const getLoadingStatus = computed(() => system.loading);
 
 	// ACTIONS
 	function authCheck () {
@@ -45,5 +47,9 @@ export const useSystemStore = defineStore('systemStore', () => {
 		system.uid = uid;
 	}
 
-	return { system, isAuth, getUid, setUid, authCheck, getToken, sendRegistrationFormToServer, sendLoginFormToServer };
+	function loaded () {
+		system.loading = false;
+	}
+
+	return { system, loaded, getLoadingStatus, isAuth, getUid, setUid, authCheck, getToken, sendRegistrationFormToServer, sendLoginFormToServer };
 });

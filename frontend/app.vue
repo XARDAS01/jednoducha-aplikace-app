@@ -1,6 +1,6 @@
 <template>
 	<div class="nuxt-container layout">
-		<nuxt-layout v-if="system.isAuth">
+		<nuxt-layout v-if="system.isAuth && !system.getLoadingStatus">
 			<nav>
 				<the-navigation />
 			</nav>

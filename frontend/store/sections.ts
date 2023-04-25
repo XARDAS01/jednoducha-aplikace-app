@@ -43,10 +43,9 @@ export const useSectionsStore = defineStore('sectionsStore', () => {
 		}
 	}
 
-	// function myBooksSectionLoad () {
-	// 	sections.myBooks = sections.book.filter(book => book.uid === useSystemStore().getUid);
-	// 	console.log(useSystemStore().getUid);
-	// }
+	function myBooksSectionLoad () {
+		sections.myBooks = sections.book.filter(book => book.authorUid === useSystemStore().getUid);
+	}
 
 	async function tokenSectionLoad () {
 		const result = await useCustomFetch<{}>('/token/getAll', 'GET');
@@ -73,11 +72,20 @@ export const useSectionsStore = defineStore('sectionsStore', () => {
 		}
 	}
 
-	function loadAllSections () {
-		tokenSectionLoad();
-		bookSectionLoad();
-		userSectionLoad();
-		// myBooksSectionLoad();
+	async function editSectionUserItem (userId:number, body:object) {
+		const result = await useCustomFetch<{}>('/user/edit?userId=' + userId, 'POST', body);
+		if (result.data.value.code === 201) {
+			const objIndex = sections.user.findIndex(user => user.id === userId);
+			sections.user[objIndex] = result.data.value.payload;
+		}
+	}
+
+	async function loadAllSections () {
+		await tokenSectionLoad();
+		await userSectionLoad();
+		await bookSectionLoad();
+		await myBooksSectionLoad();
+		await useSystemStore().loaded();
 	}
 
 	// async function load () {
@@ -102,5 +110,5 @@ export const useSectionsStore = defineStore('sectionsStore', () => {
 	// 	}
 	// }
 
-	return { sections, getSectionByName, getSectionUser, getSectionBook, getSectionMyBook, getSectionToken, userSectionLoad, getNavigationLinks, bookSectionLoad, tokenSectionLoad, addAction, registerNewUserAction, loadAllSections };
+	return { sections, editSectionUserItem, getSectionByName, getSectionUser, getSectionBook, getSectionMyBook, getSectionToken, userSectionLoad, getNavigationLinks, bookSectionLoad, tokenSectionLoad, addAction, registerNewUserAction, loadAllSections };
 });
