@@ -1,6 +1,6 @@
 <template>
 	<div class="text-center flex flex-col">
-		hello asdas
+		main page
 	</div>
 </template>
 

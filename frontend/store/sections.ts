@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { usePopupStore } from './popups';
 import { useSystemStore } from './system';
+import { useEmailTemplatesStore } from './../store/emailTemplates';
 import { useCustomFetch } from '~/composable/fetch';
 
 export const useSectionsStore = defineStore('sectionsStore', () => {
@@ -59,7 +60,8 @@ export const useSectionsStore = defineStore('sectionsStore', () => {
 		const result = await useCustomFetch<{}>('/book/add', 'POST', body);
 		if (result.data.value.code === 201) {
 			usePopupStore().togglePopup(false);
-			bookSectionLoad();
+			await bookSectionLoad();
+			await myBooksSectionLoad();
 		}
 	}
 
@@ -85,6 +87,7 @@ export const useSectionsStore = defineStore('sectionsStore', () => {
 		await userSectionLoad();
 		await bookSectionLoad();
 		await myBooksSectionLoad();
+		await useEmailTemplatesStore().loadEmailTemplates();
 		await useSystemStore().loaded();
 	}
 

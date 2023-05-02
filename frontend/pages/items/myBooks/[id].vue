@@ -55,6 +55,7 @@
 						class="form__container__input"
 						type="text"
 						placeholder="Last Edit Date"
+						disabled
 					>
 				</div>
 
@@ -90,18 +91,18 @@ function submit () {
 
 <style scoped>
 .form {
-  @apply flex flex-col max-w-[40rem] m-auto pb-[3rem];
+	@apply flex flex-col max-w-[40rem] m-auto pb-[3rem];
 }
 
 .form__container {
-  @apply flex flex-col p-[1rem];
+	@apply flex flex-col p-[1rem];
 }
 
 .form__container input {
-  @apply bg-brandColor text-white p-[1rem] m-[0.5rem] rounded-md;
+	@apply bg-brandColor text-white p-[1rem] m-[0.5rem] rounded-md;
 }
 
 .form__container button:hover {
-  @apply bg-brandColor;
+	@apply bg-brandColor;
 }
 </style>

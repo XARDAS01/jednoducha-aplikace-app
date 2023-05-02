@@ -66,25 +66,25 @@ async function onClickCell (id) { await navigateTo(useRoute().fullPath + '/' + i
 </script>
 
 <style scoped>
-.page__wrapper__table-container {
+.template__wrapper {
 	@apply overflow-auto;
 }
 .table {
-  @apply w-full h-full text-left;
+	@apply w-full h-full text-left;
 }
 .table--empty {
 	@apply text-[2rem] bg-brandColor p-[2rem];
 }
 .table__row {
-  @apply cursor-pointer;
+	@apply cursor-pointer;
 }
 .table__row th {
-  @apply bg-brandColor;
+	@apply bg-brandColor;
 }
 .table__row:hover {
-  @apply bg-brandColor;
+	@apply bg-brandColor;
 }
 .table__row__cell {
-  @apply p-[1rem];
+	@apply p-[1rem];
 }
 </style>

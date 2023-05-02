@@ -22,5 +22,9 @@ export const usePopupStore = defineStore('popupStore', () => {
 		popup.data = popupData || { title: 'Modal window' };
 	}
 
-	return { popup, getStatus, getName, getData, togglePopup };
+	function setName (name:string) {
+		popup.name = name || 'popup';
+	}
+
+	return { popup, getStatus, getName, getData, togglePopup, setName };
 });

@@ -30,7 +30,7 @@ export const useSystemStore = defineStore('systemStore', () => {
 	}
 
 	async function sendLoginFormToServer (user:object) {
-		const result = await useCustomFetch<{}>('/api/v1/auth/login', 'POST', user);
+		const result = await useCustomFetch<{}>('/auth/login', 'POST', user);
 		if (result.data.value.code === 200) {
 			onAuth(result.data.value.payload.token);
 		}
@@ -51,5 +51,11 @@ export const useSystemStore = defineStore('systemStore', () => {
 		system.loading = false;
 	}
 
-	return { system, loaded, getLoadingStatus, isAuth, getUid, setUid, authCheck, getToken, sendRegistrationFormToServer, sendLoginFormToServer };
+	async function csvDownload (section:string) {
+		await navigateTo('http://localhost:8080/api/v1/' + section + '/export', {
+			external: true,
+		});
+	}
+
+	return { system, loaded, csvDownload, getLoadingStatus, isAuth, getUid, setUid, authCheck, getToken, sendRegistrationFormToServer, sendLoginFormToServer };
 });

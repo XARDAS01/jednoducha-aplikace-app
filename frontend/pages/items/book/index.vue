@@ -11,10 +11,19 @@
 					Export CSV
 				</button>
 
+				<!-- <button
+					type="button"
+					class="btn btn-fill--dark controllers__item--global controllers__item__export--global"
+					:disabled="useSectionsStore().getSectionBook.length === 0"
+					@click="openModalWindow('exportPdf', 'Export PDF')"
+				>
+					Export PDF
+				</button> -->
+
 				<button
 					type="button"
 					class="btn btn-fill--dark controllers__item--global controllers__item__add--global"
-					@click="openModalWindow"
+					@click="openModalWindow('addNew', 'Add new to book')"
 				>
 					Add new
 				</button>
@@ -31,7 +40,12 @@
 	>
 		<template #content>
 			<modal-add-form
+				v-if="usePopupStore().getName === 'addNew'"
 				section="book"
+			/>
+
+			<modal-export-csv
+				v-if="usePopupStore().getName === 'exportPdf'"
 			/>
 		</template>
 	</modal-template>
@@ -40,13 +54,12 @@
 <script setup lang="ts">
 import { useSectionsStore } from './../../../store/sections';
 import { usePopupStore } from './../../../store/popups';
+import { useSystemStore } from './../../../store/system';
 
-function openModalWindow () { usePopupStore().togglePopup(true, '', { title: 'Add new to book' }); }
+function openModalWindow (name:string, title:string) { usePopupStore().togglePopup(true, name, { title }); }
 function closeModalWindow () { usePopupStore().togglePopup(false); }
 
-async function exportCSV () {
-	await navigateTo('https://jednoducha-aplikace-production.up.railway.app/api/v1/book/export', {
-		external: true,
-	});
+function exportCSV () {
+	useSystemStore().csvDownload('book');
 }
 </script>

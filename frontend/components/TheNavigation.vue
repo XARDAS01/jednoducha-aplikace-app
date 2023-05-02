@@ -11,9 +11,17 @@
 						{{ item.title }}
 					</nuxt-link>
 				</li>
+
+				<hr>
+
+				<li class="list__item">
+					<nuxt-link to="/email">
+						Sending email
+					</nuxt-link>
+				</li>
 			</ul>
 
-			<profile-banner class="navigation__wrapper__profile profile" />
+			<!-- <profile-banner class="navigation__wrapper__profile profile" /> -->
 		</div>
 	</section>
 </template>
@@ -25,32 +33,32 @@ const sections = useSectionsStore();
 
 <style scoped>
 .navigation__wrapper__logo {
-  @apply p-[2rem] border-b-[0.5rem] border-bgColor;
+	@apply p-[2rem] border-b-[0.5rem] border-bgColor;
 }
 .navigation {
-  @apply fixed top-5 bottom-5 left-5;
+	@apply fixed top-5 bottom-5 left-5;
 }
 /* .navigation--full-screen {
   @apply fixed top-20 right-20 bottom-20 left-20;
 } */
 .navigation__wrapper {
-  @apply flex flex-col justify-between w-[15rem] h-full bg-brandColor rounded-xl;
+	@apply flex flex-col justify-between w-[15rem] h-full bg-brandColor rounded-xl;
 }
 
 .list {
-  @apply h-[100%] overflow-y-auto;
+	@apply h-[100%] overflow-y-auto;
 }
 .list__item {
-  @apply pb-[0.5rem];
+	@apply pb-[0.5rem];
 }
 .list__item a {
-  @apply block w-full h-full px-[1rem] py-[0.7rem] text-[1.6rem]
+	@apply block w-full h-full px-[1rem] py-[0.7rem] text-[1.6rem]
 
-  duration-500;
+		duration-500;
 }
 .list__item a:hover {
-  @apply bg-secondBrandColor
+	@apply bg-secondBrandColor
 
-  duration-500;
+		duration-500;
 }
 </style>

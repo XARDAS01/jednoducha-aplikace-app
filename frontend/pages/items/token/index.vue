@@ -19,10 +19,9 @@
 
 <script setup lang="ts">
 import { useSectionsStore } from './../../../store/sections';
+import { useSystemStore } from './../../../store/system';
 
-async function exportCSV () {
-	await navigateTo('https://jednoducha-aplikace-production.up.railway.app/api/v1/token/export', {
-		external: true,
-	});
+function exportCSV () {
+	useSystemStore().csvDownload('token');
 }
 </script>

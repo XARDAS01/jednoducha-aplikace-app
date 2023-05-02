@@ -6,7 +6,7 @@
 					type="button"
 					class="btn btn-fill--dark controllers__item--global controllers__item__export--global"
 					:disabled="useSectionsStore().getSectionUser.length === 0"
-					@click="exportCSV"
+					@click="openModalWindow('exportCsv', 'Export CSV')"
 				>
 					Export CSV
 				</button>
@@ -14,7 +14,7 @@
 				<button
 					type="button"
 					class="btn btn-fill--dark controllers__item--global controllers__item__add--global"
-					@click="openModalWindow"
+					@click="openModalWindow('addNew', 'Add new user')"
 				>
 					Add new
 				</button>
@@ -31,7 +31,18 @@
 	>
 		<template #content>
 			<modal-add-form
+				v-if="usePopupStore().getName === 'addNew'"
 				section="user"
+			/>
+
+			<modal-export-csv
+				v-if="usePopupStore().getName === 'exportCsv'"
+				section="user"
+			/>
+
+			<modal-send-email
+				v-if="usePopupStore().getName === 'attachment'"
+				:section="usePopupStore().getName"
 			/>
 		</template>
 	</modal-template>
@@ -41,12 +52,6 @@
 import { useSectionsStore } from './../../../store/sections';
 import { usePopupStore } from './../../../store/popups';
 
-function openModalWindow () { usePopupStore().togglePopup(true, '', { title: 'Add new to user' }); }
+function openModalWindow (name:string, title:string) { usePopupStore().togglePopup(true, name, { title }); }
 function closeModalWindow () { usePopupStore().togglePopup(false); }
-
-async function exportCSV () {
-	await navigateTo('https://jednoducha-aplikace-production.up.railway.app/api/v1/user/export', {
-		external: true,
-	});
-}
 </script>

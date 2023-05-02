@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import { useSystemStore } from './store/system';
 import { useSectionsStore } from './store/sections';
+import { usePopupStore } from './store/popups';
 
 const system = useSystemStore();
 const sections = useSectionsStore();
